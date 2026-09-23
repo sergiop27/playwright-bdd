@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   // Carpeta donde se encuentran los tests
-  testDir: './tests',
+  testDir: './src/tests',
   // Ejecutar los tests dentro de cada archivo en paralelo
   fullyParallel: true,
   // En CI, falla si se dejó accidentalmente un test.only en el código
