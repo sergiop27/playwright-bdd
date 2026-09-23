@@ -1,23 +1,53 @@
-# 🎭 Playwright BDD — Desde Cero hasta un Framework Profesional
+# 🎭 Playwright BDD — De cero a un Framework de Automatización
 
-> Proyecto educativo para aprender automatización de pruebas construyendo un framework real paso a paso con **Playwright + TypeScript**, evolucionando posteriormente hacia **BDD, Page Object Model y buenas prácticas de arquitectura**.
+> Proyecto educativo para aprender automatización construyendo un framework real paso a paso con **Playwright + TypeScript**, evolucionando posteriormente hacia **BDD, Page Object Model, buenas prácticas y CI/CD**.
 
 ---
 
-## 🎯 Objetivo del proyecto
+## 🎯 Objetivo
 
 Este repositorio nace con una idea simple:
 
 > **No aprender solamente a escribir tests. Aprender a construir un framework de automatización.**
 
-La propuesta es comenzar desde una instalación limpia de Playwright e ir incorporando progresivamente conceptos y herramientas utilizadas en proyectos reales de QA Automation.
+Vamos a comenzar desde una instalación limpia de Playwright y evolucionar progresivamente hacia una arquitectura utilizada en proyectos reales de QA Automation.
 
-Cada evolución del proyecto tendrá un propósito técnico claro.
+La idea es entender siempre:
+
+```text
+¿Qué agregamos?
+      ↓
+¿Por qué lo agregamos?
+      ↓
+¿Qué problema resuelve?
+```
+
+No construiremos todas las capas desde el principio.
+
+Primero haremos funcionar los tests.
+
+Después comenzaremos a detectar problemas de:
+
+```text
+Duplicación
+Mantenimiento
+Organización
+Escalabilidad
+Reutilización
+```
+
+Y a partir de esas necesidades iremos incorporando nuevas soluciones.
+
+---
+
+# 🚀 Evolución del proyecto
+
+Nuestro camino será:
 
 ```text
 Playwright
     ↓
-TypeScript
+Tests reales
     ↓
 BDD
     ↓
@@ -34,23 +64,27 @@ Reporting
 CI/CD
 ```
 
-La intención es poder entender **qué agregamos, por qué lo agregamos y qué problema resuelve**.
+> La arquitectura crecerá junto con las necesidades del proyecto.
 
 ---
 
-# 🚀 Estado actual
+# 📍 Estado actual
 
-Actualmente el proyecto se encuentra en su primera etapa:
+Actualmente ya tenemos:
 
 ```text
 ✅ Proyecto Playwright creado
 ✅ TypeScript configurado
 ✅ Browsers instalados
-✅ Test inicial funcionando
 ✅ Scripts básicos de ejecución
-✅ Repositorio versionado
+✅ Primeros tests reales con SauceDemo
+✅ Login exitoso
+✅ Validaciones de login fallido
+✅ Validaciones de Products
+✅ Navegación al detalle de productos
 
 ⏳ BDD
+⏳ playwright-bdd
 ⏳ Page Object Model
 ⏳ BasePage
 ⏳ Fixtures
@@ -58,9 +92,13 @@ Actualmente el proyecto se encuentra en su primera etapa:
 ⏳ CI/CD
 ```
 
-En este punto estamos trabajando con **Playwright Test puro**.
+En esta etapa trabajamos deliberadamente con:
 
-BDD será incorporado posteriormente utilizando `playwright-bdd`.
+```text
+Playwright Test + TypeScript
+```
+
+sin agregar todavía ninguna capa adicional.
 
 ---
 
@@ -71,18 +109,17 @@ BDD será incorporado posteriormente utilizando `playwright-bdd`.
 | 🎭 Playwright | Automatización Web E2E |
 | 🔷 TypeScript | Lenguaje principal |
 | 🟢 Node.js | Runtime |
-| 🥒 BDD | Definición de escenarios |
-| 🎭 playwright-bdd | Integración BDD con Playwright Test |
-| 📄 Gherkin | Escritura de Features |
-| 🧱 Page Object Model | Organización de páginas |
-| 🔀 Git | Versionado del proyecto |
-| ⚙️ CI/CD | Ejecución automatizada |
+| 🥒 Gherkin | Definición futura de escenarios BDD |
+| 🎭 playwright-bdd | Integración futura de BDD |
+| 🧱 Page Object Model | Arquitectura futura |
+| 🔀 Git | Versionado |
+| ⚙️ CI/CD | Ejecución automatizada futura |
 
 ---
 
 # 🏁 Crear un proyecto Playwright desde cero
 
-Antes de construir un framework necesitamos crear una base funcional.
+Antes de pensar en arquitectura necesitamos una base funcional.
 
 ## 1️⃣ Verificar Node.js
 
@@ -98,13 +135,13 @@ npm --version
 
 ---
 
-## 2️⃣ Crear una carpeta para el proyecto
+## 2️⃣ Crear la carpeta del proyecto
 
 ```bash
 mkdir playwright-bdd
 ```
 
-Ingresamos:
+Entramos:
 
 ```bash
 cd playwright-bdd
@@ -136,54 +173,220 @@ Install Playwright browsers
 → Yes
 ```
 
-Playwright creará automáticamente la estructura inicial del proyecto.
+Con esto Playwright genera automáticamente la estructura inicial.
 
 ---
 
-# 📁 Estructura inicial
+# 📁 Estructura actual
 
-Actualmente nuestro proyecto se parece a esto:
+Nuestro proyecto ya evolucionó desde el ejemplo inicial de Playwright.
+
+Actualmente tenemos:
 
 ```text
 playwright-bdd/
 │
 ├── tests/
-│   └── example.spec.ts
-│
-├── tests-examples/
+│   ├── login.spec.ts
+│   └── products.spec.ts
 │
 ├── playwright.config.ts
 ├── package.json
 ├── package-lock.json
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
 
-### `playwright.config.ts`
-
-Es el archivo principal de configuración de Playwright.
-
-Más adelante configuraremos aquí elementos como:
+Todavía no tenemos:
 
 ```text
-Browsers
-Base URL
-Timeouts
-Retries
-Screenshots
-Videos
-Traces
-Reporters
-Projects
-BDD
+features/
+steps/
+pages/
+fixtures/
+core/
+```
+
+Estas carpetas aparecerán cuando exista una necesidad real para crearlas.
+
+---
+
+# 🧪 Aplicación utilizada
+
+Durante el proyecto utilizaremos:
+
+## SauceDemo
+
+```text
+https://www.saucedemo.com/
+```
+
+SauceDemo nos permite practicar progresivamente:
+
+```text
+Login
+Validaciones
+Productos
+Navegación
+Filtros
+Carrito
+Checkout
+Escenarios positivos
+Escenarios negativos
+Flujos End-to-End
+```
+
+---
+
+# 🔐 Tests de Login
+
+Archivo:
+
+```text
+tests/login.spec.ts
+```
+
+Actualmente validamos diferentes comportamientos del login.
+
+### Login exitoso
+
+Utilizamos:
+
+```text
+standard_user
+```
+
+con la contraseña:
+
+```text
+secret_sauce
+```
+
+Validamos que después de autenticarnos correctamente:
+
+```text
+Login
+  ↓
+Inventory
+  ↓
+Products
+```
+
+---
+
+### Login con contraseña incorrecta
+
+También verificamos que la aplicación muestre correctamente el mensaje de error cuando las credenciales no son válidas.
+
+---
+
+### Usuario bloqueado
+
+Utilizamos:
+
+```text
+locked_out_user
+```
+
+para validar el comportamiento de SauceDemo ante un usuario bloqueado.
+
+---
+
+# 🛒 Tests de Products
+
+Archivo:
+
+```text
+tests/products.spec.ts
+```
+
+Para probar la sección de productos primero realizamos el login.
+
+```text
+Login
+  ↓
+Products
+```
+
+Actualmente validamos:
+
+```text
+Visualización del inventario
+        ↓
+Cantidad de productos
+        ↓
+Selección de producto
+        ↓
+Detalle del producto
+```
+
+Por ejemplo:
+
+```text
+Sauce Labs Backpack
+```
+
+y verificamos información como:
+
+```text
+Nombre
+Precio
+Página de detalle
+```
+
+---
+
+# 🧠 Algo importante: estamos repitiendo código
+
+En `products.spec.ts` necesitamos realizar nuevamente el login:
+
+```typescript
+await page.locator('#user-name').fill('standard_user');
+await page.locator('#password').fill('secret_sauce');
+await page.locator('#login-button').click();
+```
+
+Ese mismo comportamiento también existe dentro de nuestros tests de login.
+
+Por ahora:
+
+> **Eso es intencional.**
+
+Todavía no queremos solucionar la duplicación.
+
+Primero queremos verla.
+
+A medida que nuestros tests crezcan comenzaremos a preguntarnos:
+
+```text
+¿Qué pasa si cambia #user-name?
+
+¿Qué pasa si tenemos 30 tests que hacen login?
+
+¿Tenemos que modificar 30 archivos?
+
+¿Dónde deberían vivir los locators?
+
+¿Dónde debería vivir la lógica de Login?
+```
+
+Estas preguntas nos llevarán posteriormente a introducir:
+
+```text
+Page Object Model
+      ↓
+LoginPage
+      ↓
+BasePage
+      ↓
+Reutilización
 ```
 
 ---
 
 # ▶️ Ejecutar los tests
 
-El proyecto cuenta actualmente con tres formas básicas de ejecución.
-
-### Ejecución normal
+## Ejecutar todos los tests
 
 ```bash
 npm test
@@ -197,7 +400,7 @@ npx playwright test
 
 ---
 
-### Ejecución mostrando el navegador
+## Mostrar el navegador
 
 ```bash
 npm run test:headed
@@ -211,19 +414,35 @@ npx playwright test --headed
 
 ---
 
-### Playwright UI Mode
+## Playwright UI Mode
 
 ```bash
 npm run test:ui
 ```
 
-Permite ejecutar, inspeccionar y depurar los tests utilizando la interfaz gráfica de Playwright.
+Esta opción permite ejecutar y depurar tests utilizando la interfaz gráfica de Playwright.
+
+---
+
+## Ejecutar solamente Login
+
+```bash
+npx playwright test login.spec.ts
+```
+
+---
+
+## Ejecutar solamente Products
+
+```bash
+npx playwright test products.spec.ts
+```
 
 ---
 
 # 📦 Scripts actuales
 
-Actualmente nuestro `package.json` contiene:
+Nuestro `package.json` contiene actualmente:
 
 ```json
 {
@@ -235,67 +454,77 @@ Actualmente nuestro `package.json` contiene:
 }
 ```
 
-Estos scripts irán creciendo junto con el framework.
+Más adelante estos scripts crecerán junto con el framework.
 
-Más adelante podremos tener ejecuciones como:
-
-```bash
-npm run test:smoke
-
-npm run test:regression
-
-npm run test:headed
-
-npm run test:bdd
-
-npm run test:chrome
-
-npm run test:firefox
-```
-
----
-
-# 🧪 Nuestra primera aplicación de pruebas
-
-Durante el curso utilizaremos principalmente:
-
-### SauceDemo
+Por ejemplo:
 
 ```text
-https://www.saucedemo.com/
+test:bdd
+test:smoke
+test:regression
+test:chrome
+test:firefox
+test:report
 ```
 
-Esta aplicación nos permitirá trabajar progresivamente con:
-
-- Login
-- Validaciones
-- Productos
-- Filtros
-- Carrito
-- Checkout
-- Escenarios positivos
-- Escenarios negativos
-- Flujos End-to-End
-
-La aplicación irá creciendo con nosotros en complejidad.
+Pero los agregaremos solamente cuando realmente existan esas capacidades.
 
 ---
 
-# 🥒 Próximo paso: BDD
+# 🎭 Playwright puro
 
-Nuestro proyecto actualmente utiliza tests tradicionales de Playwright:
+Actualmente nuestra arquitectura es extremadamente sencilla:
 
-```typescript
-import { test, expect } from '@playwright/test';
-
-test('ejemplo', async ({ page }) => {
-
-    await page.goto('https://www.saucedemo.com/');
-
-});
+```text
+SPEC
+ ↓
+PLAYWRIGHT
+ ↓
+BROWSER
+ ↓
+SAUCEDEMO
 ```
 
-Más adelante evolucionaremos hacia escenarios BDD:
+Ejemplo:
+
+```text
+login.spec.ts
+      ↓
+Playwright
+      ↓
+SauceDemo
+```
+
+Esto nos permite aprender primero las capacidades fundamentales de Playwright:
+
+```text
+page.goto()
+locator()
+fill()
+click()
+expect()
+beforeEach()
+```
+
+antes de agregar nuevas abstracciones.
+
+---
+
+# 🥒 Próxima evolución: BDD
+
+Nuestro próximo gran cambio será incorporar:
+
+```text
+playwright-bdd
+```
+
+Actualmente tenemos:
+
+```text
+login.spec.ts
+```
+
+Más adelante podremos expresar el mismo comportamiento como:
 
 ```gherkin
 Feature: Login
@@ -304,58 +533,88 @@ Feature: Login
 
     Given el usuario se encuentra en la página de login
     When ingresa credenciales válidas
-    Then debería visualizar el inventario
+    Then debería visualizar los productos
 ```
 
-La integración será realizada con:
+La arquitectura pasará inicialmente a:
 
 ```text
-playwright-bdd
+FEATURE
+   ↓
+STEP DEFINITIONS
+   ↓
+PLAYWRIGHT
+   ↓
+BROWSER
 ```
 
-La idea es mantener **Playwright Test como runner** y agregar la capa BDD sobre él.
+Sin Page Object Model todavía.
 
-Conceptualmente tendremos:
+Primero queremos entender BDD.
+
+---
+
+# 🧱 Evolución posterior hacia POM
+
+Una vez que tengamos BDD funcionando comenzaremos a separar responsabilidades.
+
+Nuestra arquitectura evolucionará hacia:
 
 ```text
-Feature
+FEATURE
    ↓
-Step Definition
+STEPS
    ↓
-Page Object
+PAGE OBJECT
    ↓
-Playwright
+PLAYWRIGHT
    ↓
-Browser
+BROWSER
+```
+
+Y posteriormente:
+
+```text
+FEATURE
+   ↓
+STEPS
+   ↓
+PAGE OBJECT
+   ↓
+BASE PAGE
+   ↓
+PLAYWRIGHT
+   ↓
+BROWSER
 ```
 
 ---
 
-# 🧱 Arquitectura objetivo
+# 🏗️ Arquitectura objetivo
 
-No construiremos toda esta estructura de una vez.
+No existe todavía.
 
-Llegaremos a ella progresivamente.
+Es el lugar al que queremos llegar progresivamente.
 
 ```text
 playwright-bdd/
 │
 ├── features/
 │   ├── login.feature
-│   ├── inventory.feature
+│   ├── products.feature
 │   └── checkout.feature
 │
 ├── src/
 │   │
 │   ├── pages/
 │   │   ├── LoginPage.ts
-│   │   ├── InventoryPage.ts
+│   │   ├── ProductsPage.ts
 │   │   ├── CartPage.ts
 │   │   └── CheckoutPage.ts
 │   │
 │   ├── steps/
 │   │   ├── login.steps.ts
-│   │   └── checkout.steps.ts
+│   │   └── products.steps.ts
 │   │
 │   ├── fixtures/
 │   │
@@ -367,142 +626,93 @@ playwright-bdd/
 └── README.md
 ```
 
-Cada carpeta aparecerá cuando exista una necesidad real para crearla.
+Cada componente será agregado cuando entendamos qué responsabilidad tiene.
 
 ---
 
-# 🧠 Evolución de la arquitectura
+# 🧠 Conceptos que iremos incorporando
 
-Uno de los objetivos principales será pasar de esto:
-
-```text
-TEST
- ↓
-PLAYWRIGHT
- ↓
-BROWSER
-```
-
-a esto:
+A medida que avance el proyecto podremos trabajar conceptos como:
 
 ```text
-FEATURE
-   ↓
-STEPS
-   ↓
-PAGE OBJECTS
-   ↓
-BASE PAGE
-   ↓
-PLAYWRIGHT
-   ↓
-BROWSER
-```
-
-Esto nos permitirá introducir conceptos como:
-
-```text
+Page Object Model
+Separación de responsabilidades
 Encapsulamiento
 Herencia
 Abstracción
 Polimorfismo
+Fixtures
 Reutilización
-Separación de responsabilidades
-Mantenibilidad
+Test Data
+Configuración por ambientes
+Tags
+Reporting
+Multi-browser
+CI/CD
 ```
 
-Pero los iremos incorporando cuando realmente tengan sentido.
+No como conceptos aislados.
+
+Los aplicaremos para solucionar problemas reales que aparezcan mientras el framework crece.
 
 ---
 
-# 🗺️ Roadmap del proyecto
+# 🗺️ Roadmap
 
 | Etapa | Tema | Estado |
 |---|---|---|
 | 01 | Instalación de Playwright | ✅ |
-| 02 | Primer test | ✅ |
+| 02 | Primer test de ejemplo | ✅ |
 | 03 | Scripts de ejecución | ✅ |
-| 04 | README y documentación | 🚧 |
-| 05 | playwright-bdd | ⏳ |
-| 06 | Primer Feature | ⏳ |
-| 07 | Step Definitions | ⏳ |
-| 08 | Page Object Model | ⏳ |
-| 09 | BasePage | ⏳ |
-| 10 | Herencia | ⏳ |
-| 11 | Fixtures | ⏳ |
-| 12 | Polimorfismo | ⏳ |
-| 13 | Test Data | ⏳ |
-| 14 | Tags | ⏳ |
-| 15 | Screenshots / Trace / Video | ⏳ |
-| 16 | Reporting | ⏳ |
-| 17 | Variables de entorno | ⏳ |
-| 18 | Multi-browser | ⏳ |
-| 19 | CI/CD | ⏳ |
+| 04 | Tests reales con SauceDemo | ✅ |
+| 05 | Login positivo y negativo | ✅ |
+| 06 | Tests de Products | ✅ |
+| 07 | Documentación del proyecto | ✅ |
+| 08 | playwright-bdd | ⏳ |
+| 09 | Primer Feature | ⏳ |
+| 10 | Step Definitions | ⏳ |
+| 11 | Page Object Model | ⏳ |
+| 12 | BasePage | ⏳ |
+| 13 | Fixtures | ⏳ |
+| 14 | Herencia y polimorfismo | ⏳ |
+| 15 | Test Data | ⏳ |
+| 16 | Tags | ⏳ |
+| 17 | Screenshots / Trace / Video | ⏳ |
+| 18 | Reporting | ⏳ |
+| 19 | Variables de entorno | ⏳ |
+| 20 | Multi-browser | ⏳ |
+| 21 | CI/CD | ⏳ |
 
 ---
 
-# 🌳 Estrategia de branches
+# 💡 Filosofía del proyecto
 
-El repositorio también será utilizado para aprender una forma ordenada de evolucionar un proyecto.
-
-```text
-main
- │
- ├── feature/01-readme
- │
- ├── feature/02-playwright-bdd
- │
- ├── feature/03-first-feature
- │
- ├── feature/04-page-object-model
- │
- ├── feature/05-base-page
- │
- ├── feature/06-fixtures
- │
- ├── feature/07-tags
- │
- ├── feature/08-reporting
- │
- └── feature/09-ci
-```
-
-La rama:
-
-```text
-main
-```
-
-representará siempre una versión estable del proyecto.
-
-Cada concepto nuevo será desarrollado de forma aislada y luego incorporado mediante un Merge Request / Pull Request.
-
----
-
-# 💡 Filosofía del repositorio
-
-Este repositorio no pretende mostrar solamente el resultado final.
-
-Pretende mostrar **el camino para llegar hasta él**.
-
-Por eso evitaremos comenzar directamente con:
+No queremos comenzar directamente con:
 
 ```text
 BDD
-+ POM
-+ BasePage
-+ Fixtures
-+ Hooks
-+ Reports
-+ CI/CD
++
+POM
++
+BasePage
++
+Fixtures
++
+Hooks
++
+Reports
++
+CI/CD
 ```
 
 sin entender qué necesidad resuelve cada pieza.
 
-La evolución será:
+Seguiremos esta evolución:
 
 ```text
 Primero funciona.
+
+Después observamos.
 
 Después organizamos.
 
@@ -517,7 +727,7 @@ Después escalamos.
 
 # 🎯 Objetivo final
 
-Al finalizar, tendremos un framework capaz de ejecutar escenarios:
+El objetivo es terminar con un framework capaz de trabajar con:
 
 ```text
 BDD
@@ -530,24 +740,25 @@ Fixtures
    ↓
 Multi Browser
    ↓
-Reports
+Reporting
    ↓
 CI/CD
 ```
 
-pero, más importante todavía:
+Pero el verdadero objetivo es otro:
 
-> **Vamos a entender cómo y por qué fue construido.**
+> **Entender cómo llegamos hasta ahí y por qué tomamos cada decisión.**
 
 ---
 
 ## 👨‍💻 QA Automation Learning Project
 
-Proyecto creado con fines educativos para aprender automatización de pruebas desde sus fundamentos hasta una arquitectura profesional.
+Proyecto educativo orientado a aprender automatización desde los fundamentos hasta una arquitectura profesional.
 
 ### 🎭 Playwright + 🔷 TypeScript + 🥒 BDD
 
 ---
 
-> ⭐ **Automatizar no es solamente hacer que un test corra.  
-> Es diseñar una solución que podamos mantener mañana.**
+> ⭐ **Automatizar no es solamente hacer que un test corra.**
+>
+> **Es construir una solución que podamos entender, mantener y evolucionar.**
